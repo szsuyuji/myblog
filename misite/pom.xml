@@ -4,4 +4,17 @@
   <artifactId>sun.misite.web</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  <dependencies>
+  	<dependency>
+  		<groupId>joda-time</groupId>
+  		<artifactId>joda-time</artifactId>
+  		<version>2.3</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.google.guava</groupId>
+  		<artifactId>guava</artifactId>
+  		<version>15.0</version>
+  		<classifier>site</classifier>
+  	</dependency>
+  </dependencies>
 </project>

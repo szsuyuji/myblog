@@ -3,6 +3,8 @@
  */
 package com.szsuyuji.blog.domain;
 
+import org.joda.time.DateTime;
+
 import com.szsuyuji.blog.domain.base.Root;
 
 /**
@@ -19,5 +21,12 @@ public class Topic implements Root {
 
 	private String content;
 
+	private Long createdBy;
+
+	private Long modifiedBy;
+
+	private DateTime createdOn;
+
+	private DateTime modifiedOn;
 
 }
