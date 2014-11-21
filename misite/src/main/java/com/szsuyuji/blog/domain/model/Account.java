@@ -1,4 +1,4 @@
-package com.szsuyuji.blog.domain.user;
+package com.szsuyuji.blog.domain.model;
 
 import com.szsuyuji.blog.domain.base.Root;
 

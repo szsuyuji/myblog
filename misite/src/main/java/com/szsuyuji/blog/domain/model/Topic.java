@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.szsuyuji.blog.domain;
+package com.szsuyuji.blog.domain.model;
 
 import org.joda.time.DateTime;
 
