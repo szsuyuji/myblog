@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation=" 
+          http://www.springframework.org/schema/beans 
+          http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+          http://www.springframework.org/schema/tx 
+          http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+          http://www.springframework.org/schema/context 
+          http://www.springframework.org/schema/context/spring-context-4.0.xsd ">
+	<context:annotation-config />
+	<context:component-scan base-package="com.szsuyuji.blog.infrastructure.persistence" />
+	<context:property-placeholder location="classpath:jdbc.properties,classpath:/hibernate/hibernate.properties" />
+	
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" >
+	    <property name="driverClass" value="${jdbc.driver}" />
+	    <property name="jdbcUrl" value="${jdbc.url}" />
+	    <property name="user" value="${jdbc.user}" />
+	    <property name="password" value="${jdbc.password}" />
+	    <property name="acquireIncrement" value="${c3p0.acquireIncrement}"/>
+	    <property name="acquireRetryAttempts" value="${c3p0.acquireRetryAttempts}" />
+	    <property name="acquireRetryDelay" value="${c3p0.acquireRetryDelay}"/>
+	    <property name="autoCommitOnClose" value="${c3p0.autoCommitOnClose}"/>
+	    <property name="breakAfterAcquireFailure" value="${c3p0.breakAfterAcquireFailure}"/>
+	    <property name="automaticTestTable" value="${c3p0.automaticTestTable}"/>
+	    <property name="idleConnectionTestPeriod" value="${c3p0.idleConnectionTestPeriod}"/>
+	    <property name="maxPoolSize" value="${c3p0.maxPoolSize}"/>
+	    <property name="minPoolSize" value="${c3p0.minPoolSize}" />
+	    <property name="maxIdleTime" value="${c3p0.maxIdleTime}"/>
+	    <property name="checkoutTimeout" value="${c3p0.checkoutTimeout}"/>
+	    <property name="maxStatements" value="${c3p0.maxStatements}"/>
+	    <property name="maxStatementsPerConnection" value="${c3p0.maxStatementsPerConnection}"/>
+    </bean>
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingDirectoryLocations" value="classpath:/com/szsuyuji/blog/infrastructure/persistence" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+				<prop key="net.sf.ehcache.configurationResourceName">${hibernate.ehcache.configurationResourceName}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="txManager"
+		proxy-target-class="true" />
+	
+</beans>

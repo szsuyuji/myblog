@@ -11,7 +11,7 @@ import com.szsuyuji.blog.domain.base.Root;
  * @author 孙月江
  * 
  */
-public class Blog implements Root {
+public class Blog extends Root {
 
 	private static final long serialVersionUID = 4535087523310240610L;
 

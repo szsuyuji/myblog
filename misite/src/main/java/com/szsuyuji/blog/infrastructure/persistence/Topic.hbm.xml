@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.szsuyuji.blog.domain.model" >
+   <class name="Topic" table="Topic"  >
+      <id name="id" type="int" column="id">
+         <generator class="native"/>
+      </id>
+      <property name="title" column="title" type="string"/>
+      <property name="content" column="content" type="string"/>
+      <property name="authorId" column="author_id" type="long"/>
+      <property name="modifiedBy" column="modified_by" type="long"/>
+      <property name="createdOn" column="created_on" type="timestamp"/>  
+      <property name="modifiedOn" column="modified_on" type="timestamp"/>  
+      <property name="accessedNum" column="accessed_num" type="int"/>
+      <property name="replyNum" column="reply_num" type="int"/>
+      <property name="likeNum" column="like_num" type="int"/>
+   </class>
+</hibernate-mapping>

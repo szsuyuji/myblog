@@ -8,7 +8,7 @@ import com.szsuyuji.blog.domain.base.Root;
  * @author 孙月江
  * 
  */
-public class Account implements Root {
-	private static final long serialVersionUID = -4149360242687842047L;
+public class Account extends Root {
 
+	private static final long serialVersionUID = -4149360242687842047L;
 }
