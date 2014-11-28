@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.google.common.reflect.TypeToken;
 
 @SuppressWarnings("unchecked")
-abstract public class HibernateRepository<T, E extends Serializable> {
+abstract public class HibernateRepository<T, E extends Serializable> implements Repository<T, E> {
 
 	@SuppressWarnings("serial")
 	private TypeToken<T> typeToken = new TypeToken<T>(getClass()) {
